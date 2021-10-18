@@ -8,10 +8,10 @@ from django.utils.translation import gettext as _
 from django.views import View
 
 from nautobot.ipam.models import IPAddress
-from nautobotDDNS.background_tasks import dns_create
-from nautobotDDNS.forms import ExtraDNSNameEditForm
-from nautobotDDNS.models import DNSStatus, ExtraDNSName
-from nautobotDDNS.utils import normalize_fqdn
+from nautobot-ddns.background_tasks import dns_create
+from nautobot-ddns.forms import ExtraDNSNameEditForm
+from nautobot-ddns.models import DNSStatus, ExtraDNSName
+from nautobot-ddns.utils import normalize_fqdn
 
 try:
     # Nautobot <= 2.9
@@ -50,17 +50,17 @@ class ExtraDNSNameObjectMixin:
 
 
 class ExtraDNSNameCreateView(PermissionRequiredMixin, ExtraDNSNameObjectMixin, ObjectEditView):
-    permission_required = 'nautobotDDNS.add_extradnsname'
+    permission_required = 'nautobot-ddns.add_extradnsname'
     queryset = ExtraDNSName.objects.all()
     model_form = ExtraDNSNameEditForm
 
 
 class ExtraDNSNameEditView(ExtraDNSNameCreateView):
-    permission_required = 'nautobotDDNS.change_extradnsname'
+    permission_required = 'nautobot-ddns.change_extradnsname'
 
 
 class ExtraDNSNameDeleteView(PermissionRequiredMixin, ExtraDNSNameObjectMixin, ObjectDeleteView):
-    permission_required = 'nautobotDDNS.delete_extradnsname'
+    permission_required = 'nautobot-ddns.delete_extradnsname'
     queryset = ExtraDNSName.objects.all()
 
 

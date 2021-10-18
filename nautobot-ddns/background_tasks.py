@@ -9,10 +9,10 @@ from django_rq import job
 from dns import rcode
 from netaddr import ip
 
-from nautobotDDNS.models import ACTION_CREATE, ACTION_DELETE, DNSStatus, RCODE_NO_ZONE, ReverseZone, Zone
-from nautobotDDNS.utils import get_soa
+from nautobot-ddns.models import ACTION_CREATE, ACTION_DELETE, DNSStatus, RCODE_NO_ZONE, ReverseZone, Zone
+from nautobot-ddns.utils import get_soa
 
-logger = logging.getLogger('nautobotDDNS')
+logger = logging.getLogger('nautobot-ddns')
 
 
 def status_update(output: List[str], operation: str, response) -> None:

@@ -1,6 +1,6 @@
 import django_tables2 as tables
 
-from nautobotDDNS.models import ExtraDNSName
+from nautobot-ddns.models import ExtraDNSName
 from nautobot.utilities.tables import BaseTable, ToggleColumn
 
 FORWARD_DNS = """
@@ -14,13 +14,13 @@ FORWARD_DNS = """
 
 ACTIONS = """
     {% if perms.dcim.change_extradnsname %}
-        <a href="{% url 'plugins:nautobotDDNS:extradnsname_edit' ipaddress_pk=record.ip_address.pk pk=record.pk %}" 
+        <a href="{% url 'plugins:nautobot-ddns:extradnsname_edit' ipaddress_pk=record.ip_address.pk pk=record.pk %}" 
            class="btn btn-xs btn-warning">
             <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
         </a>
     {% endif %}
     {% if perms.dcim.delete_extradnsname %}
-        <a href="{% url 'plugins:nautobotDDNS:extradnsname_delete' ipaddress_pk=record.ip_address.pk pk=record.pk %}"
+        <a href="{% url 'plugins:nautobot-ddns:extradnsname_delete' ipaddress_pk=record.ip_address.pk pk=record.pk %}"
            class="btn btn-xs btn-danger">
             <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
         </a>

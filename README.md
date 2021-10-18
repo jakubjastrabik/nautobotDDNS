@@ -1,1 +1,1 @@
-# nautobotDDNS
+# nautobot-ddns

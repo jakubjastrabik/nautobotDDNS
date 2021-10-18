@@ -1,6 +1,6 @@
 from django import forms
 
-from nautobotDDNS.models import ExtraDNSName
+from nautobot-ddns.models import ExtraDNSName
 from nautobot.utilities.forms import BootstrapMixin
 
 

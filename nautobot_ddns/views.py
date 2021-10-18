@@ -12,13 +12,7 @@ from nautobot_ddns.background_tasks import dns_create
 from nautobot_ddns.forms import ExtraDNSNameEditForm
 from nautobot_ddns.models import DNSStatus, ExtraDNSName
 from nautobot_ddns.utils import normalize_fqdn
-
-try:
-    # Nautobot <= 2.9
-    from nautobot.utilities.views import ObjectDeleteView, ObjectEditView
-except ImportError:
-    # Nautobot >= 2.10
-    from nautobot.views.generic import ObjectDeleteView, ObjectEditView
+from nautobot.utilities.views import ObjectDeleteView, ObjectEditView
 
 
 # noinspection PyMethodMayBeStatic

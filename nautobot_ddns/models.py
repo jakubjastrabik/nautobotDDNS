@@ -179,7 +179,7 @@ class ReverseZoneQuerySet(models.QuerySet):
 
 class ReverseZone(models.Model):
     prefix = IPNetworkFormField(
-        name=_('prefix'),
+        label=_('prefix'),
     )
     name = models.CharField(
         verbose_name=_('reverse zone name'),

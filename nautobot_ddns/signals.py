@@ -4,11 +4,11 @@ from django.dispatch import receiver
 from netaddr import IPNetwork
 
 from nautobot.ipam.models import IPAddress
-from nautobot_ddns.background_tasks import dns_create, dns_delete
-from nautobot_ddns.models import DNSStatus, ExtraDNSName
-from nautobot_ddns.utils import normalize_fqdn
+from nautobot_DDNS.background_tasks import dns_create, dns_delete
+from nautobot_DDNS.models import DNSStatus, ExtraDNSName
+from nautobot_DDNS.utils import normalize_fqdn
 
-logger = logging.getLogger('nautobot_ddns')
+logger = logging.getLogger('nautobot_DDNS')
 
 
 @receiver(pre_save, sender=IPAddress)

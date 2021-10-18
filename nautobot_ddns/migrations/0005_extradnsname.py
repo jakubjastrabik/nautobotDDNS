@@ -2,14 +2,14 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import nautobot_ddns.validators
+import nautobot_DDNS.validators
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
         ('nautobot.ipam', '0036_standardize_description'),
-        ('nautobot_ddns', '0004_ensure_trailing_dot'),
+        ('nautobot_DDNS', '0004_ensure_trailing_dot'),
     ]
 
     operations = [
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('forward_rcode', models.PositiveIntegerField(blank=True, null=True)),
                 ('reverse_action', models.PositiveSmallIntegerField(blank=True, null=True)),
                 ('reverse_rcode', models.PositiveIntegerField(blank=True, null=True)),
-                ('name', models.CharField(max_length=255, validators=[nautobot_ddns.validators.HostnameValidator()])),
+                ('name', models.CharField(max_length=255, validators=[nautobot_DDNS.validators.HostnameValidator()])),
                 ('ip_address', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='nautobot.ipam.IPAddress')),
             ],
             options={

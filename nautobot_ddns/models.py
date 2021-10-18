@@ -17,7 +17,7 @@ from nautobot.ipam.models import IPAddress
 from .utils import normalize_fqdn
 from .validators import HostnameAddressValidator, HostnameValidator, validate_base64
 
-logger = logging.getLogger('nautobot_ddns')
+logger = logging.getLogger('nautobot_DDNS')
 
 TSIG_ALGORITHM_CHOICES = (
     (str(HMAC_MD5), 'HMAC MD5'),

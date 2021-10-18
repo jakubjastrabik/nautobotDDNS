@@ -9,7 +9,7 @@ except ImportError:
 
 
 class NautobotDDNSConfig(PluginConfig):
-    name = 'nautobot_DDNS'
+    name = 'nautobotDDNS'
     verbose_name = 'Dynamic DNS'
     version = VERSION
     min_version = '2.8'

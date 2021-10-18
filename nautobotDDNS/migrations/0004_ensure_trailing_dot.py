@@ -14,9 +14,9 @@ def remove_trailing_dots(apps, schema_editor):
 
 
 def update_trailing_dots(apps, trailing_dot):
-    server_model = apps.get_model('nautobot_DDNS', 'Server')
-    zone_model = apps.get_model('nautobot_DDNS', 'Zone')
-    reverse_zone_model = apps.get_model('nautobot_DDNS', 'ReverseZone')
+    server_model = apps.get_model('nautobotDDNS', 'Server')
+    zone_model = apps.get_model('nautobotDDNS', 'Zone')
+    reverse_zone_model = apps.get_model('nautobotDDNS', 'ReverseZone')
 
     for server in server_model.objects.all():
         server.tsig_key_name = server.tsig_key_name.rstrip('.') + trailing_dot
@@ -33,7 +33,7 @@ def update_trailing_dots(apps, trailing_dot):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('nautobot_DDNS', '0003_dnsstatus'),
+        ('nautobotDDNS', '0003_dnsstatus'),
     ]
 
     operations = [

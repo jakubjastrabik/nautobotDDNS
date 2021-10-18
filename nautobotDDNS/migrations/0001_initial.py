@@ -3,7 +3,7 @@
 from django.db import migrations, models
 import django.db.models.deletion
 import nautobot.ipam.fields
-import nautobot_DDNS.validators
+import nautobotDDNS.validators
 
 
 class Migration(migrations.Migration):
@@ -18,10 +18,10 @@ class Migration(migrations.Migration):
             name='Server',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False)),
-                ('server', models.CharField(max_length=255, validators=[nautobot_DDNS.validators.HostnameAddressValidator()])),
-                ('tsig_key_name', models.CharField(max_length=255, validators=[nautobot_DDNS.validators.HostnameValidator()])),
+                ('server', models.CharField(max_length=255, validators=[nautobotDDNS.validators.HostnameAddressValidator()])),
+                ('tsig_key_name', models.CharField(max_length=255, validators=[nautobotDDNS.validators.HostnameValidator()])),
                 ('tsig_algorithm', models.CharField(max_length=32)),
-                ('tsig_key', models.CharField(max_length=512, validators=[nautobot_DDNS.validators.validate_base64])),
+                ('tsig_key', models.CharField(max_length=512, validators=[nautobotDDNS.validators.validate_base64])),
             ],
             options={
                 'verbose_name': 'dynamic DNS Server',
@@ -34,8 +34,8 @@ class Migration(migrations.Migration):
             name='Zone',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=255, unique=True, validators=[nautobot_DDNS.validators.HostnameValidator()])),
-                ('server', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='nautobot_DDNS.Server')),
+                ('name', models.CharField(max_length=255, unique=True, validators=[nautobotDDNS.validators.HostnameValidator()])),
+                ('server', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='nautobotDDNS.Server')),
             ],
             options={
                 'verbose_name': 'zone',
@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False)),
                 ('prefix', ipam.fields.IPNetworkField(unique=True)),
                 ('name', models.CharField(blank=True, max_length=255)),
-                ('server', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='nautobot_DDNS.Server')),
+                ('server', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='nautobotDDNS.Server')),
             ],
             options={
                 'verbose_name': 'reverse zone',

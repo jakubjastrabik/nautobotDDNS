@@ -17,7 +17,7 @@ class DNSInfo(PluginTemplateExtension):
             'perms': PermWrapper(self.context['request'].user),
         }
         context.update(csrf(self.context['request']))
-        return self.render('nautobot_DDNS/ipaddress/dns_refresh_button.html', context)
+        return self.render('nautobotDDNS/ipaddress/dns_refresh_button.html', context)
 
     def left_page(self):
         """
@@ -26,8 +26,8 @@ class DNSInfo(PluginTemplateExtension):
         extra_dns_name_table = tables.PrefixTable(list(self.context['object'].extradnsname_set.all()), orderable=False)
 
         return (
-                self.render('nautobot_DDNS/ipaddress/dns_info.html') +
-                self.render('nautobot_DDNS/ipaddress/dns_extra.html', {
+                self.render('nautobotDDNS/ipaddress/dns_info.html') +
+                self.render('nautobotDDNS/ipaddress/dns_extra.html', {
                     'perms': PermWrapper(self.context['request'].user),
                     'extra_dns_name_table': extra_dns_name_table,
                 })

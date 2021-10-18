@@ -1,6 +1,6 @@
 {% load render_table from django_tables2 %}
 
-{% if perms.nautobot_DDNS.view_extradnsname %}
+{% if perms.nautobotDDNS.view_extradnsname %}
     <div class="panel panel-default">
         <div class="panel-heading">
             <strong>Extra DNS Names</strong>
@@ -8,9 +8,9 @@
 
         {% render_table extra_dns_name_table 'inc/table.html' %}
 
-        {% if perms.nautobot_DDNS.add_extradnsname %}
+        {% if perms.nautobotDDNS.add_extradnsname %}
             <div class="panel-footer text-right noprint">
-                <a href="{% url 'plugins:nautobot_DDNS:extradnsname_create' ipaddress_pk=object.pk %}"
+                <a href="{% url 'plugins:nautobotDDNS:extradnsname_create' ipaddress_pk=object.pk %}"
                    class="btn btn-xs btn-primary">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add extra DNS name
                 </a>

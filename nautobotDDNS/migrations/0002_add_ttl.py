@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nautobot_DDNS', '0001_initial'),
+        ('nautobotDDNS', '0001_initial'),
     ]
 
     operations = [

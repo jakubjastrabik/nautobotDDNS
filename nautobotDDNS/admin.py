@@ -10,12 +10,12 @@ from django.utils.translation import gettext_lazy as _
 
 from nautobot.ipam.models import IPAddress
 from nautobot.core import admin_site
-from nautobot_DDNS.models import DNSStatus, ExtraDNSName
+from nautobotDDNS.models import DNSStatus, ExtraDNSName
 from .background_tasks import dns_create
 from .models import ReverseZone, Server, Zone
 from .utils import normalize_fqdn
 
-logger = logging.getLogger('nautobot_DDNS')
+logger = logging.getLogger('nautobotDDNS')
 
 
 class IPFamilyFilter(SimpleListFilter):

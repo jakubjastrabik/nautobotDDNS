@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('nautobot.ipam', '0036_standardize_description'),
-        ('nautobot_DDNS', '0002_add_ttl'),
+        ('nautobotDDNS', '0002_add_ttl'),
     ]
 
     operations = [

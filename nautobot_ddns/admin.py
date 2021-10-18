@@ -9,7 +9,7 @@ from django.http.request import HttpRequest
 from django.utils.translation import gettext_lazy as _
 
 from nautobot.ipam.models import IPAddress
-from nautobot.core import admin_site
+from nautobot.core import admin
 from nautobot_ddns.models import DNSStatus, ExtraDNSName
 from .background_tasks import dns_create
 from .models import ReverseZone, Server, Zone
@@ -43,7 +43,7 @@ class ReverseZoneInlineAdmin(admin.TabularInline):
     model = ReverseZone
 
 
-@admin.register(Server, site=admin_site)
+@admin.register(Server, site=admin)
 class ServerAdmin(admin.ModelAdmin):
     list_display = ('server', 'tsig_key_name', 'tsig_algorithm')
     inlines = [
@@ -52,7 +52,7 @@ class ServerAdmin(admin.ModelAdmin):
     ]
 
 
-@admin.register(Zone, site=admin_site)
+@admin.register(Zone, site=admin)
 class ZoneAdmin(admin.ModelAdmin):
     list_display = ('name', 'ttl', 'server')
     actions = [
@@ -111,7 +111,7 @@ class ZoneAdmin(admin.ModelAdmin):
                                                                                           name=zone.name))
 
 
-@admin.register(ReverseZone, site=admin_site)
+@admin.register(ReverseZone, site=admin)
 class ReverseZoneAdmin(admin.ModelAdmin):
     list_display = ('prefix', 'name', 'ttl', 'server')
     list_filter = [IPFamilyFilter]
@@ -151,6 +151,6 @@ class ReverseZoneAdmin(admin.ModelAdmin):
                                                                                           name=zone.name))
 
 
-@admin.register(ExtraDNSName, site=admin_site)
+@admin.register(ExtraDNSName, site=admin)
 class ExtraDNSNameAdmin(admin.ModelAdmin):
     pass

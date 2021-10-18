@@ -176,12 +176,7 @@ class ReverseZoneQuerySet(models.QuerySet):
         zones.sort(key=lambda zone: zone.prefix.prefixlen)
         return zones[-1]
 
-
 class ReverseZone(models.Model):
-    prefix = IPNetworkFormField(
-        verbose_name=_('prefix'),
-        unique=True,
-    )
     name = models.CharField(
         verbose_name=_('reverse zone name'),
         max_length=255,

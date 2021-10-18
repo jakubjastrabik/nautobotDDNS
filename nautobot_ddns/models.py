@@ -1,3 +1,4 @@
+from enum import unique
 import dns.tsigkeyring
 import dns.update
 import logging
@@ -177,6 +178,9 @@ class ReverseZoneQuerySet(models.QuerySet):
         return zones[-1]
 
 class ReverseZone(models.Model):
+    prefix = IPNetworkFormField(
+        name=_('prefix'),
+    )
     name = models.CharField(
         verbose_name=_('reverse zone name'),
         max_length=255,

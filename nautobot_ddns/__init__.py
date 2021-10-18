@@ -1,4 +1,4 @@
-VERSION = '0.0.11'
+VERSION = '0.0.12'
 
 try:
     from nautobot.extras.plugins import PluginConfig

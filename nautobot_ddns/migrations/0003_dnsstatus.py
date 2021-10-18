@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nautobot.ipam', '0036_standardize_description'),
+        ('ipam', '0036_standardize_description'),
         ('nautobot_ddns', '0002_add_ttl'),
     ]
 
@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('forward_rcode', models.PositiveIntegerField(blank=True, null=True)),
                 ('reverse_action', models.PositiveSmallIntegerField(blank=True, null=True)),
                 ('reverse_rcode', models.PositiveIntegerField(blank=True, null=True)),
-                ('ip_address', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='nautobot.ipam.IPAddress')),
+                ('ip_address', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='ipam.IPAddress')),
             ],
             options={
                 'verbose_name': 'DNS status',

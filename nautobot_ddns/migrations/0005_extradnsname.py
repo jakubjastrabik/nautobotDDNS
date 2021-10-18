@@ -8,7 +8,7 @@ import nautobot_ddns.validators
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nautobot.ipam', '0036_standardize_description'),
+        ('ipam', '0036_standardize_description'),
         ('nautobot_ddns', '0004_ensure_trailing_dot'),
     ]
 
@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('reverse_action', models.PositiveSmallIntegerField(blank=True, null=True)),
                 ('reverse_rcode', models.PositiveIntegerField(blank=True, null=True)),
                 ('name', models.CharField(max_length=255, validators=[nautobot_ddns.validators.HostnameValidator()])),
-                ('ip_address', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='nautobot.ipam.IPAddress')),
+                ('ip_address', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ipam.IPAddress')),
             ],
             options={
                 'verbose_name': 'extra DNS name',

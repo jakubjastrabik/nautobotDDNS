@@ -196,7 +196,6 @@ class ReverseZone(models.Model):
     objects = ReverseZoneQuerySet.as_manager()
 
     class Meta:
-        ordering = ('prefix',)
         verbose_name = _('reverse zone')
         verbose_name_plural = _('reverse zones')
 

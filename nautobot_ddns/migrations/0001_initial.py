@@ -53,7 +53,6 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'reverse zone',
                 'verbose_name_plural': 'reverse zones',
-                'ordering': ('prefix',),
             },
         ),
     ]

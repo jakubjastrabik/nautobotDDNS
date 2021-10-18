@@ -47,7 +47,7 @@ class Migration(migrations.Migration):
             name='ReverseZone',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False)),
-                ('prefix', ipam.fields.IPNetworkField(unique=True)),
+                ('prefix', ipam.fields.IPNetworkFormField(unique=True)),
                 ('name', models.CharField(blank=True, max_length=255)),
                 ('server', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='nautobot_ddns.Server')),
             ],

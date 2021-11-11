@@ -2,7 +2,7 @@
 name = "nautobot-ddns"
 version = "0.0.1"
 description = "Dynamic DNS Connector for Nautobot"
-authors = ["Jakub Jastrabik <jakub.jastrabik@lastmile.sk>"]
+authors = ["Jakub Jastrabik <jastrabik.kubko@gmail.com>"]
 license = "Apache 2.0"
 
 [tool.poetry.dependencies]

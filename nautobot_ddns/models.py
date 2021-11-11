@@ -12,7 +12,7 @@ from dns.tsig import HMAC_MD5, HMAC_SHA1, HMAC_SHA224, HMAC_SHA256, HMAC_SHA384,
 from netaddr import IPNetwork, ip
 from typing import Optional
 
-from nautobot.ipam.fields import IPNetworkFormField
+from nautobot.ipam.fields import VarbinaryIPField
 from nautobot.ipam.models import IPAddress
 from .utils import normalize_fqdn
 from .validators import HostnameAddressValidator, HostnameValidator, validate_base64
@@ -178,7 +178,7 @@ class ReverseZoneQuerySet(models.QuerySet):
 
 
 class ReverseZone(models.Model):
-    prefix = IPNetworkFormField(
+    prefix = VarbinaryIPField(
         verbose_name=_('prefix'),
         unique=True,
     )

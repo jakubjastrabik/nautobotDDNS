@@ -8,7 +8,7 @@ except ImportError:
         pass
 
 class NautobotDDNSConfig(PluginConfig):
-    name = 'nautobot-ddns'
+    name = 'nautobot_ddns'
     verbose_name = 'Dynamic DNS'
     version = VERSION
     author = 'Jakub Jastrabik && Sander Steffann'

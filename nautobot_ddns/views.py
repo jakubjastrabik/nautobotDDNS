@@ -13,8 +13,8 @@ from nautobot_ddns.forms import ExtraDNSNameEditForm
 from nautobot_ddns.models import DNSStatus, ExtraDNSName
 from nautobot_ddns.utils import normalize_fqdn
 
-#from nautobot.core.views.generic import ObjectDeleteView, ObjectEditView
-from nautobot.utilities.views import ObjectDeleteView, ObjectEditView
+from nautobot.core.views.generic import ObjectDeleteView, ObjectEditView
+#from nautobot.utilities.views import ObjectDeleteView, ObjectEditView
 
 # try:
 

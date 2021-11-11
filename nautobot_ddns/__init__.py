@@ -1,4 +1,4 @@
-VERSION = '1.0.2'
+VERSION = '1.0.3'
 
 try:
     from nautobot.extras.plugins import PluginConfig
@@ -14,7 +14,7 @@ class NautobotDDNSConfig(PluginConfig):
     author = 'Jakub Jastrabik && Sander Steffann'
     author_email = 'jastrabik.kubko@gmail.com'
     description = 'Dynamic DNS Connector for Nautobot'
-    base_url = 'ddns'
+    base_url = 'nautobot_ddns'
     required_settings = []
     default_settings = {}
 

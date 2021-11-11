@@ -1,5 +1,4 @@
 {% if perms.ipam.change_ipaddress %}
-    <form method="post" class="inline-block">
         {% csrf_token %}
 
         <button type="submit" name="_edit"
@@ -7,5 +6,5 @@
                 class="btn btn-sm btn-secondary">
             <span class="mdi mdi-refresh" aria-hidden="true"></span> Recreate DNS
         </button>
-    </form>
+
 {% endif %}

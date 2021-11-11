@@ -13,16 +13,16 @@ FORWARD_DNS = """
 """
 
 ACTIONS = """
-    {% if perms.dcim.change_extradnsname %}
+    {% if perms.nautobot_ddns.change_extradnsname %}
         <a href="{% url 'plugins:nautobot_ddns:extradnsname_edit' ipaddress_pk=record.ip_address.pk pk=record.pk %}" 
-           class="btn btn-xs btn-warning">
-            <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i>
+           class="btn btn-sm btn-warning">
+            <i class="mdi mdi-pencil" aria-hidden="true"></i>
         </a>
     {% endif %}
-    {% if perms.dcim.delete_extradnsname %}
+    {% if perms.nautobot_ddns.delete_extradnsname %}
         <a href="{% url 'plugins:nautobot_ddns:extradnsname_delete' ipaddress_pk=record.ip_address.pk pk=record.pk %}"
-           class="btn btn-xs btn-danger">
-            <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+           class="btn btn-sm btn-danger">
+            <i class="mdi mdi-trash-can-outline" aria-hidden="true"></i>
         </a>
     {% endif %}
 """

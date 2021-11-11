@@ -1,1 +1,0 @@
-recursive-include nautobot_ddns/templates *.html

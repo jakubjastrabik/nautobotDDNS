@@ -7,7 +7,7 @@ from . import tables
 
 # noinspection PyAbstractClass
 class DNSInfo(PluginTemplateExtension):
-    model = 'nautobot.ipam.ipaddress'
+    model = 'ipam.ipaddress'
 
     def buttons(self):
         """

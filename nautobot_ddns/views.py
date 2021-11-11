@@ -12,7 +12,14 @@ from nautobot_ddns.background_tasks import dns_create
 from nautobot_ddns.forms import ExtraDNSNameEditForm
 from nautobot_ddns.models import DNSStatus, ExtraDNSName
 from nautobot_ddns.utils import normalize_fqdn
-from nautobot.core.views.generic import ObjectDeleteView, ObjectEditView
+
+try:
+
+    from nautobot.utilities.views import ObjectDeleteView, ObjectEditView
+except ImportError:
+
+    from nautobot.core.views.generic import ObjectDeleteView, ObjectEditView
+
 
 # noinspection PyMethodMayBeStatic
 class ExtraDNSNameObjectMixin:
@@ -58,7 +65,7 @@ class ExtraDNSNameDeleteView(PermissionRequiredMixin, ExtraDNSNameObjectMixin, O
 
 
 class IPAddressDNSNameRecreateView(PermissionRequiredMixin, View):
-    permission_required = 'nautobot.ipam.change_ipaddress'
+    permission_required = 'ipam.change_ipaddress'
 
     # noinspection PyMethodMayBeStatic
     def post(self, request, ipaddress_pk):
@@ -96,4 +103,4 @@ class IPAddressDNSNameRecreateView(PermissionRequiredMixin, View):
         if updated_names:
             messages.info(request, _("Updating DNS for {names}").format(names=', '.join(updated_names)))
 
-        return redirect('nautobot.ipam:ipaddress', pk=ip_address.pk)
+        return redirect('ipam:ipaddress', pk=ip_address.pk)

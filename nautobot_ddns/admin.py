@@ -113,7 +113,7 @@ class ZoneAdmin(admin.ModelAdmin):
 
 @admin.register(ReverseZone, site=admin_site)
 class ReverseZoneAdmin(admin.ModelAdmin):
-    list_display = ('name', 'ttl', 'server')
+    list_display = ('prefix', 'name', 'ttl', 'server')
     list_filter = [IPFamilyFilter]
     actions = [
         'update_all_records'

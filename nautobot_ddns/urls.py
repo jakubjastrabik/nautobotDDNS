@@ -1,19 +1,18 @@
-"""nautobot_ddns URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
 from django.urls import path
 
-urlpatterns = []
+from .views import ExtraDNSNameCreateView, ExtraDNSNameDeleteView, ExtraDNSNameEditView, IPAddressDNSNameRecreateView
+
+urlpatterns = [
+    path(route='ip-addresses/<int:ipaddress_pk>/recreate/',
+         view=IPAddressDNSNameRecreateView.as_view(),
+         name='ipaddress_dnsname_recreate'),
+    path(route='ip-addresses/<int:ipaddress_pk>/extra/create/',
+         view=ExtraDNSNameCreateView.as_view(),
+         name='extradnsname_create'),
+    path(route='ip-addresses/<int:ipaddress_pk>/extra/<int:pk>/edit/',
+         view=ExtraDNSNameEditView.as_view(),
+         name='extradnsname_edit'),
+    path(route='ip-addresses/<int:ipaddress_pk>/extra/<int:pk>/delete/',
+         view=ExtraDNSNameDeleteView.as_view(),
+         name='extradnsname_delete'),
+]

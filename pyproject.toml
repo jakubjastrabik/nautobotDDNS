@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nautobot-ddns"
-version = "0.0.1"
+version = "1.0.0"
 description = "Dynamic DNS Connector for Nautobot"
 authors = ["Jakub Jastrabik <jastrabik.kubko@gmail.com>"]
 license = "Apache 2.0"

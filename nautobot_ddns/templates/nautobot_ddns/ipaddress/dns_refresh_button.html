@@ -1,5 +1,5 @@
 {% if perms.ipam.change_ipaddress %}
-    <form method="post" class="inline-block">
+    <form method="post" class="pull-left" style="margin-right: 4px;">
         {% csrf_token %}
 
         <button type="submit" name="_edit"

@@ -1,39 +1,40 @@
 {% if object.dnsstatus %}
-    <div class="card">
-        <h5 class="card-header"> Dynamic DNS Status </strong>
-        <div class="card-body">
-            <table class="table table-hover attr-table">
-                <tbody>
-                    <tr>
-                        <th scope="row">Last update</th>
-                        <td>
-                            {{ object.dnsstatus.last_update }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Forward DNS</th>
-                        <td>
-                            {% if object.dnsstatus.forward_action is not None %}
-                                {{ object.dnsstatus.get_forward_action_display }}:
-                                {{ object.dnsstatus.get_forward_rcode_html_display }}
-                            {% else %}
-                                <span class="text-muted">Not created</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Reverse DNS</th>
-                        <td>
-                            {% if object.dnsstatus.reverse_action is not None %}
-                                {{ object.dnsstatus.get_reverse_action_display }}:
-                                {{ object.dnsstatus.get_reverse_rcode_html_display }}
-                            {% else %}
-                                <span class="text-muted">Not created</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="panel panel-{{ panel_class|default:'default' }}">
+        <div class="panel-heading">
+            <strong> Dynamic DNS Status </strong>
         </div>
+
+        <table class="table table-hover panel-body attr-table">
+            <tbody>
+                <tr>
+                    <td scope="row">Last update</td>
+                    <td>
+                        {{ object.dnsstatus.last_update }}
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row">Forward DNS</td>
+                    <td>
+                        {% if object.dnsstatus.forward_action is not None %}
+                            {{ object.dnsstatus.get_forward_action_display }}:
+                            {{ object.dnsstatus.get_forward_rcode_html_display }}
+                        {% else %}
+                            <span class="text-muted">Not created</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row">Reverse DNS</td>
+                    <td>
+                        {% if object.dnsstatus.reverse_action is not None %}
+                            {{ object.dnsstatus.get_reverse_action_display }}:
+                            {{ object.dnsstatus.get_reverse_rcode_html_display }}
+                        {% else %}
+                            <span class="text-muted">Not created</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 {% endif %}

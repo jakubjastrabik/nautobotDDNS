@@ -1,10 +1,8 @@
 {% if perms.ipam.change_ipaddress %}
+    <form method="post" class="pull-right noprint">
         {% csrf_token %}
-
-        <button type="submit" name="_edit"
-                formaction="{% url 'plugins:nautobot_ddns:ipaddress_dnsname_recreate' ipaddress_pk=object.pk %}"
-                class="btn btn-sm btn-secondary">
-            <span class="mdi mdi-refresh" aria-hidden="true"></span> Recreate DNS
-        </button>
-
+        <a href="{% url 'plugins:netbox_ddns:ipaddress_dnsname_recreate' ipaddress_pk=object.pk %}" class="btn btn-primary"> 
+                <span class="mdi mdi-refresh" aria-hidden="true"></span> Recreate DNS
+        </a>
+    </form>
 {% endif %}

@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib import messages
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import Http404
@@ -14,6 +16,8 @@ from nautobot_ddns.models import DNSStatus, ExtraDNSName
 from nautobot_ddns.utils import normalize_fqdn
 
 from nautobot.core.views.generic import ObjectDeleteView, ObjectEditView
+
+logger = logging.getLogger('nautobot_ddns')
 
 # noinspection PyMethodMayBeStatic
 class ExtraDNSNameObjectMixin:
@@ -51,6 +55,7 @@ class ExtraDNSNameCreateView(PermissionRequiredMixin, ExtraDNSNameObjectMixin, O
 
 class ExtraDNSNameEditView(ExtraDNSNameCreateView):
     permission_required = 'nautobot_ddns.change_extradnsname'
+    logger.error(permission_required)
 
 
 class ExtraDNSNameDeleteView(PermissionRequiredMixin, ExtraDNSNameObjectMixin, ObjectDeleteView):

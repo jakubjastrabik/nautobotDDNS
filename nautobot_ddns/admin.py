@@ -107,8 +107,7 @@ class ZoneAdmin(admin.ModelAdmin):
 
                 counter += 1
 
-            messages.info(request, _("Updating {count} forward records in {name}").format(count=counter,
-                                                                                          name=zone.name))
+            messages.info(request, _("Updating {count} forward records in {name}").format(count=counter, name=zone.name))
 
 
 @admin.register(ReverseZone, site=admin_site)
@@ -147,8 +146,7 @@ class ReverseZoneAdmin(admin.ModelAdmin):
 
                     counter += 1
 
-            messages.info(request, _("Updating {count} reverse records in {name}").format(count=counter,
-                                                                                          name=zone.name))
+            messages.info(request, _("Updating {count} reverse records in {name}").format(count=counter, name=zone.name))
 
 
 @admin.register(ExtraDNSName, site=admin_site)

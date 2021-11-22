@@ -1,18 +1,11 @@
 from django.urls import path
 
-from .views import ExtraDNSNameCreateView, ExtraDNSNameDeleteView, ExtraDNSNameEditView, IPAddressDNSNameRecreateView
+from . import views
+# from .views import ExtraDNSNameCreateView, ExtraDNSNameDeleteView, ExtraDNSNameEditView, IPAddressDNSNameRecreateView
 
 urlpatterns = [
-    path(route='ip-addresses/<uuid:ipaddress_pk>/recreate/',
-         view=IPAddressDNSNameRecreateView.as_view(),
-         name='ipaddress_dnsname_recreate'),
-    path(route='ip-addresses/<uuid:ipaddress_pk>/extra/create/',
-         view=ExtraDNSNameCreateView.as_view(),
-         name='extradnsname_create'),
-    path(route='ip-addresses/<uuid:ipaddress_pk>/extra/<int:pk>/edit/',
-         view=ExtraDNSNameEditView.as_view(),
-         name='extradnsname_edit'),
-    path(route='ip-addresses/<uuid:ipaddress_pk>/extra/<int:pk>/delete/',
-         view=ExtraDNSNameDeleteView.as_view(),
-         name='extradnsname_delete'),
+    path("ip-addresses/<uuid:pk>/recreate/", views.IPAddressDNSNameRecreateView.as_view(), name='ipaddress_dnsname_recreate'),
+    path("ip-addresses/<uuid:pk>/extra/create/", views.ExtraDNSNameCreateView.as_view(), name='extradnsname_create'),
+    path("ip-addresses/<uuid:pk>/extra/<int:pk>/edit/", views.ExtraDNSNameEditView.as_view(), name='extradnsname_edit'),
+    path("ip-addresses/<uuid:pk>/extra/<int:pk>/delete/", views.ExtraDNSNameDeleteView.as_view(), name='extradnsname_delete'),
 ]

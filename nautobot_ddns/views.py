@@ -46,8 +46,6 @@ class ExtraDNSNameObjectMixin:
 
 
 class ExtraDNSNameCreateView(PermissionRequiredMixin, ExtraDNSNameObjectMixin, ObjectEditView):
-    logger.error("Idem ...")
-    logger.error(ExtraDNSNameObjectMixin)
     permission_required = 'nautobot_ddns.add_extradnsname'
     queryset = ExtraDNSName.objects.all()
     model_form = ExtraDNSNameEditForm
@@ -58,6 +56,7 @@ class ExtraDNSNameEditView(ExtraDNSNameCreateView):
 
 
 class ExtraDNSNameDeleteView(PermissionRequiredMixin, ExtraDNSNameObjectMixin, ObjectDeleteView):
+    logger.error("Fuck You!")
     permission_required = 'nautobot_ddns.delete_extradnsname'
     queryset = ExtraDNSName.objects.all()
 

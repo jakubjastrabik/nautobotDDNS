@@ -31,7 +31,7 @@ ACTIONS = """
 
 class PrefixTable(BaseTable):
     pk = ToggleColumn()
-    name = tables.LinkColumn()
+    name = tables.Column()
     last_update = tables.Column()
     forward_dns = tables.TemplateColumn(template_code=FORWARD_DNS)
     actions = tables.TemplateColumn(

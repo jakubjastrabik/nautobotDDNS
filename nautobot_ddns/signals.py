@@ -85,47 +85,47 @@ def trigger_ddns_delete(instance: IPAddress, **_kwargs):
         )
 
 
-@receiver(pre_save, sender=ExtraDNSName)
-def store_original_extra(instance: ExtraDNSName, **_kwargs):
-    instance.before_save = ExtraDNSName.objects.filter(pk=instance.pk).first()
+# @receiver(pre_save, sender=ExtraDNSName)
+# def store_original_extra(instance: ExtraDNSName, **_kwargs):
+#     instance.before_save = ExtraDNSName.objects.filter(pk=instance.pk).first()
 
 
-@receiver(post_save, sender=ExtraDNSName)
-def trigger_extra_ddns_update(instance: ExtraDNSName, **_kwargs):
-    address = instance.ip_address.address.ip
-    old_dns_name = instance.before_save.name if instance.before_save else ''
-    new_dns_name = instance.name
+# @receiver(post_save, sender=ExtraDNSName)
+# def trigger_extra_ddns_update(instance: ExtraDNSName, **_kwargs):
+#     address = instance.ip_address.address.ip
+#     old_dns_name = instance.before_save.name if instance.before_save else ''
+#     new_dns_name = instance.name
 
-    if new_dns_name != old_dns_name:
-        if old_dns_name:
-            delete = dns_delete.delay(
-                dns_name=old_dns_name,
-                address=address,
-                reverse=False,
-                status=instance,
-            )
-        else:
-            delete = None
+#     if new_dns_name != old_dns_name:
+#         if old_dns_name:
+#             delete = dns_delete.delay(
+#                 dns_name=old_dns_name,
+#                 address=address,
+#                 reverse=False,
+#                 status=instance,
+#             )
+#         else:
+#             delete = None
 
-        dns_create.delay(
-            dns_name=new_dns_name,
-            address=address,
-            status=instance,
-            reverse=False,
-            depends_on=delete,
-        )
+#         dns_create.delay(
+#             dns_name=new_dns_name,
+#             address=address,
+#             status=instance,
+#             reverse=False,
+#             depends_on=delete,
+#         )
 
 
-@receiver(post_delete, sender=ExtraDNSName)
-def trigger_extra_ddns_delete(instance: ExtraDNSName, **_kwargs):
-    address = instance.ip_address.address.ip
-    old_dns_name = instance.name
+# @receiver(post_delete, sender=ExtraDNSName)
+# def trigger_extra_ddns_delete(instance: ExtraDNSName, **_kwargs):
+#     address = instance.ip_address.address.ip
+#     old_dns_name = instance.name
 
-    if old_dns_name == normalize_fqdn(instance.ip_address.dns_name):
-        return
+#     if old_dns_name == normalize_fqdn(instance.ip_address.dns_name):
+#         return
 
-    dns_delete.delay(
-        dns_name=old_dns_name,
-        address=address,
-        reverse=False,
-    )
+#     dns_delete.delay(
+#         dns_name=old_dns_name,
+#         address=address,
+#         reverse=False,
+#     )

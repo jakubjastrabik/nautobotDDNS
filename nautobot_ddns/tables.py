@@ -1,7 +1,11 @@
+import logging
+
 import django_tables2 as tables
 
 from nautobot_ddns.models import ExtraDNSName
 from nautobot.utilities.tables import BaseTable, ToggleColumn
+
+logger = logging.getLogger('nautobot_ddns')
 
 FORWARD_DNS = """
     {% if record.forward_action is not None %}
@@ -16,7 +20,7 @@ ACTIONS = """
     {% if perms.nautobot_ddns.change_extradnsname %}
         <a href="{% url 'plugins:nautobot_ddns:extradnsname_edit' ipaddress_pk=record.ip_address.pk pk=record.pk %}" 
            class="btn btn-sm btn-warning">
-            <i class="mdi mdi-pencil" aria-hidden="true"></i> Hmm
+            <i class="mdi mdi-pencil" aria-hidden="true"></i>
         </a>
     {% endif %}
     {% if perms.nautobot_ddns.delete_extradnsname %}
@@ -39,6 +43,7 @@ class PrefixTable(BaseTable):
         verbose_name=''
     )
 
+    logger.error(BaseTable)
     class Meta(BaseTable.Meta):
         model = ExtraDNSName
         fields = ('pk', 'name', 'last_update', 'forward_dns', 'actions')

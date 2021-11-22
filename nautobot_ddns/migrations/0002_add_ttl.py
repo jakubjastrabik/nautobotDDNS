@@ -20,4 +20,4 @@ class Migration(migrations.Migration):
     #         field=models.PositiveIntegerField(default=3600),
     #         preserve_default=False,
     #     ),
-    ]
+    # ]

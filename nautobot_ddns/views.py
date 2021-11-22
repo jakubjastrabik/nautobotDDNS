@@ -18,7 +18,6 @@ from nautobot_ddns.utils import normalize_fqdn
 from nautobot.core.views.generic import ObjectDeleteView, ObjectEditView
 
 logger = logging.getLogger('nautobot_ddns')
-
 # noinspection PyMethodMayBeStatic
 class ExtraDNSNameObjectMixin:
     def get_object(self, kwargs):
@@ -30,6 +29,8 @@ class ExtraDNSNameObjectMixin:
         if 'pk' in kwargs:
             return get_object_or_404(ExtraDNSName, ip_address=ip_address, pk=kwargs['pk'])
 
+        logger.error(ip_address)
+
         return ExtraDNSName(ip_address=ip_address)
 
     def get_return_url(self, request, obj=None):
@@ -37,10 +38,11 @@ class ExtraDNSNameObjectMixin:
         # considered safe.
         query_param = request.GET.get('return_url') or request.POST.get('return_url')
         if query_param and is_safe_url(url=query_param, allowed_hosts=request.get_host()):
+            logger.error(query_param)
             return query_param
-
         # Otherwise check we have an object and can return to its ip-address
         elif obj is not None and obj.ip_address is not None:
+            logger.error(obj)
             return obj.ip_address.get_absolute_url()
 
         # If all else fails, return home. Ideally this should never happen.
@@ -50,7 +52,6 @@ class ExtraDNSNameObjectMixin:
 class ExtraDNSNameCreateView(PermissionRequiredMixin, ExtraDNSNameObjectMixin, ObjectEditView):
     permission_required = 'nautobot_ddns.add_extradnsname'
     queryset = ExtraDNSName.objects.all()
-    logger.error(queryset)
     model_form = ExtraDNSNameEditForm
 
 

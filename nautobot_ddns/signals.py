@@ -93,6 +93,8 @@ def store_original_extra(instance: ExtraDNSName, **_kwargs):
 @receiver(post_save, sender=ExtraDNSName)
 def trigger_extra_ddns_update(instance: ExtraDNSName, **_kwargs):
     address = instance.ip_address.address.ip
+    logging(address)
+    
     old_dns_name = instance.before_save.name if instance.before_save else ''
     new_dns_name = instance.name
 

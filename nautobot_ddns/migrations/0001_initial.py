@@ -65,8 +65,6 @@ class Migration(migrations.Migration):
                 ('last_update', models.DateTimeField(auto_now=True)),
                 ('forward_action', models.PositiveSmallIntegerField(blank=True, null=True)),
                 ('forward_rcode', models.PositiveIntegerField(blank=True, null=True)),
-                ('reverse_action', models.PositiveSmallIntegerField(blank=True, null=True)),
-                ('reverse_rcode', models.PositiveIntegerField(blank=True, null=True)),
                 ('ip_address', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ipam.ipaddress')),
             ],
             options={
@@ -75,7 +73,7 @@ class Migration(migrations.Migration):
                 'unique_together': {('ip_address', 'name')},
             },
         ),
-        migrations.CreateModel(
+                migrations.CreateModel(
             name='DNSStatus',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False)),

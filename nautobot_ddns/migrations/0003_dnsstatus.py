@@ -3,11 +3,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
-    dependencies = [
-        ('nautobot_ddns', '0002_add_ttl'),
-    ]
-
     operations = [
         migrations.CreateModel(
             name='DNSStatus',

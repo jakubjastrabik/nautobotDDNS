@@ -30,10 +30,6 @@ def update_trailing_dots(apps, trailing_dot):
 
 
 class Migration(migrations.Migration):
-    dependencies = [
-        ('nautobot_ddns', '0003_dnsstatus'),
-    ]
-
     operations = [
         migrations.RunPython(
             code=add_trailing_dots,

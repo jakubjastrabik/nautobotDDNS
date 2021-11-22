@@ -4,11 +4,6 @@ import nautobot_ddns.validators
 
 
 class Migration(migrations.Migration):
-
-    dependencies = [
-        ('nautobot_ddns', '0004_ensure_trailing_dot'),
-    ]
-
     operations = [
          migrations.CreateModel(
             name='ExtraDNSName',

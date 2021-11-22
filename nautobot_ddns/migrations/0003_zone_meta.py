@@ -3,7 +3,7 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('nautobot_ddns', '0001_initial'),
+        ('nautobot_ddns', '0002_ensure_trailing_dot'),
     ]
     
     operations = [

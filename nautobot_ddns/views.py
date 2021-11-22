@@ -29,6 +29,7 @@ class ExtraDNSNameObjectMixin:
         if 'pk' in kwargs:
             return get_object_or_404(ExtraDNSName, ip_address=ip_address, pk=kwargs['pk'])
 
+        logger.error("Fuck You!")
         logger.error(ExtraDNSName(ip_address=ip_address))
 
         return ExtraDNSName(ip_address=ip_address)

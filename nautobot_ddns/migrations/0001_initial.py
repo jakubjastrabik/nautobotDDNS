@@ -1,10 +1,12 @@
-
+from django.db import migrations, models
+import django.db.models.deletion
+import nautobot.ipam.fields
+import nautobot_ddns.validators
 class Migration(migrations.Migration):
 
     initial = True
 
     dependencies = [
-        ('ipam', '0004_fixup_p2p_broadcast'),
     ]
 
     operations = [

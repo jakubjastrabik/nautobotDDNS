@@ -1,0 +1,9 @@
+#!/bin/bash
+
+pip3 uninstall nautobot-ddns
+git pull
+poetry install
+nautobot-server makemigrations nautobot_ddns
+nautobot-server migrate nautobot_ddns
+nautobot-server post_upgrade
+nautobot-server runserver 0.0.0.0:8001 --insecure 

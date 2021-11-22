@@ -7,7 +7,6 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('ipam', '0004_fixup_p2p_broadcast'),
     ]
 
     operations = [

@@ -39,6 +39,8 @@ class ExtraDNSNameObjectMixin:
         # considered safe.
         query_param = request.GET.get('return_url') or request.POST.get('return_url')
         if query_param and is_safe_url(url=query_param, allowed_hosts=request.get_host()):
+            logger.error("getReturnUrl")
+            logger.error(query_param)
             return query_param
         # Otherwise check we have an object and can return to its ip-address
         elif obj is not None and obj.ip_address is not None:

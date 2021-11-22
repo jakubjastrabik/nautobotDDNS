@@ -31,7 +31,7 @@ def update_trailing_dots(apps, trailing_dot):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('netbox_ddns', '0001_initial'),
+        ('nautobot_ddns', '0001_initial'),
     ]
 
     operations = [

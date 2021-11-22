@@ -30,7 +30,7 @@ class ExtraDNSNameObjectMixin:
             return get_object_or_404(ExtraDNSName, ip_address=ip_address, pk=kwargs['pk'])
 
         logger.error("Fuck You!")
-        logger.error(ExtraDNSName(ip_address=ip_address))
+        logger.error(ExtraDNSName)
 
         return ExtraDNSName(ip_address=ip_address)
 

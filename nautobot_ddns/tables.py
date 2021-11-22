@@ -1,11 +1,8 @@
-import logging
-
 import django_tables2 as tables
 
 from nautobot_ddns.models import ExtraDNSName
 from nautobot.utilities.tables import BaseTable, ToggleColumn
 
-logger = logging.getLogger('nautobot_ddns')
 
 FORWARD_DNS = """
     {% if record.forward_action is not None %}
@@ -34,7 +31,7 @@ ACTIONS = """
 
 class PrefixTable(BaseTable):
     pk = ToggleColumn()
-    name = tables.Column()
+    name = tables.LinkColumn()
     last_update = tables.Column()
     forward_dns = tables.TemplateColumn(template_code=FORWARD_DNS)
     actions = tables.TemplateColumn(
@@ -42,8 +39,6 @@ class PrefixTable(BaseTable):
         attrs={'td': {'class': 'text-right text-nowrap noprint'}},
         verbose_name=''
     )
-
-    logger.error(BaseTable)
     class Meta(BaseTable.Meta):
         model = ExtraDNSName
         fields = ('pk', 'name', 'last_update', 'forward_dns', 'actions')

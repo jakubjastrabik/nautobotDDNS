@@ -50,12 +50,12 @@ class ExtraDNSNameObjectMixin:
 class ExtraDNSNameCreateView(PermissionRequiredMixin, ExtraDNSNameObjectMixin, ObjectEditView):
     permission_required = 'nautobot_ddns.add_extradnsname'
     queryset = ExtraDNSName.objects.all()
+    logger.error(queryset)
     model_form = ExtraDNSNameEditForm
 
 
 class ExtraDNSNameEditView(ExtraDNSNameCreateView):
     permission_required = 'nautobot_ddns.change_extradnsname'
-    logger.error(permission_required)
 
 
 class ExtraDNSNameDeleteView(PermissionRequiredMixin, ExtraDNSNameObjectMixin, ObjectDeleteView):

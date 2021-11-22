@@ -6,7 +6,6 @@ import nautobot_ddns.validators
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ipam', '0036_standardize_description'),
         ('nautobot_ddns', '0004_ensure_trailing_dot'),
     ]
 

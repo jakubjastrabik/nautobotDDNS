@@ -29,9 +29,6 @@ class ExtraDNSNameObjectMixin:
         if 'pk' in kwargs:
             return get_object_or_404(ExtraDNSName, ip_address=ip_address, pk=kwargs['pk'])
 
-        logger.error("Fuck You!")
-        logger.error(ExtraDNSName)
-
         return ExtraDNSName(ip_address=ip_address)
 
     def get_return_url(self, request, obj=None):
@@ -39,11 +36,10 @@ class ExtraDNSNameObjectMixin:
         # considered safe.
         query_param = request.GET.get('return_url') or request.POST.get('return_url')
         if query_param and is_safe_url(url=query_param, allowed_hosts=request.get_host()):
-            logger.error("getReturnUrl")
-            logger.error(query_param)
             return query_param
         # Otherwise check we have an object and can return to its ip-address
         elif obj is not None and obj.ip_address is not None:
+            logger.error(obj.ip_address.get_absolute_url())
             return obj.ip_address.get_absolute_url()
 
         # If all else fails, return home. Ideally this should never happen.

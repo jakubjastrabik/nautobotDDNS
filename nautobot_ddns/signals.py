@@ -13,7 +13,7 @@ logger = logging.getLogger('nautobot_ddns')
 
 @receiver(pre_save, sender=IPAddress)
 def store_original_ipaddress(instance: IPAddress, **_kwargs):
-    instance.before_save = IPAddress.objects.filter(pk=instance.pk).first()
+    instance.before_save = IPAddress.objects.filter(pk=instance.present_in_database)
 
 
 @receiver(post_save, sender=IPAddress)
@@ -87,7 +87,7 @@ def trigger_ddns_delete(instance: IPAddress, **_kwargs):
 
 @receiver(pre_save, sender=ExtraDNSName)
 def store_original_extra(instance: ExtraDNSName, **_kwargs):
-    instance.before_save = ExtraDNSName.objects.filter(pk=instance.pk).first()
+    instance.before_save = ExtraDNSName.objects.filter(pk=instance.present_in_database)
 
 
 @receiver(post_save, sender=ExtraDNSName)

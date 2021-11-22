@@ -16,7 +16,7 @@ ACTIONS = """
     {% if perms.nautobot_ddns.change_extradnsname %}
         <a href="{% url 'plugins:nautobot_ddns:extradnsname_edit' ipaddress_pk=record.ip_address.pk pk=record.pk %}" 
            class="btn btn-sm btn-warning">
-            <i class="mdi mdi-pencil" aria-hidden="true"></i>
+            <i class="mdi mdi-pencil" aria-hidden="true"></i> Hmm
         </a>
     {% endif %}
     {% if perms.nautobot_ddns.delete_extradnsname %}

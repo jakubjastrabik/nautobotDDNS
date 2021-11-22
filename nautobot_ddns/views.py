@@ -56,7 +56,6 @@ class ExtraDNSNameEditView(ExtraDNSNameCreateView):
 
 
 class ExtraDNSNameDeleteView(PermissionRequiredMixin, ExtraDNSNameObjectMixin, ObjectDeleteView):
-    logger.error("Fuck You!")
     permission_required = 'nautobot_ddns.delete_extradnsname'
     queryset = ExtraDNSName.objects.all()
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pip3 uninstall nautobot-ddns
+pip3 uninstall nautobot-ddns -y
 git pull
 poetry install
 nautobot-server makemigrations nautobot_ddns

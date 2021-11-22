@@ -366,5 +366,7 @@ class ExtraDNSName(models.Model):
 
     def get_forward_rcode_html_display(self) -> Optional[str]:
         output = get_rcode_display(self.forward_rcode)
+        logging(self.ip_address)
+        
         colour = 'green' if self.forward_rcode == rcode.NOERROR else 'red'
         return format_html('<span style="color:{colour}">{output}</span', colour=colour, output=output)

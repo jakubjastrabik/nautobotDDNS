@@ -27,6 +27,7 @@ class ExtraDNSNameObjectMixin:
         ip_address = get_object_or_404(IPAddress, pk=kwargs['ipaddress_pk'])
 
         if 'pk' in kwargs:
+            logger.error(get_object_or_404(ExtraDNSName, ip_address=ip_address, pk=kwargs['pk']))
             return get_object_or_404(ExtraDNSName, ip_address=ip_address, pk=kwargs['pk'])
 
         return ExtraDNSName(ip_address=ip_address)
@@ -39,7 +40,6 @@ class ExtraDNSNameObjectMixin:
             return query_param
         # Otherwise check we have an object and can return to its ip-address
         elif obj is not None and obj.ip_address is not None:
-            logger.error(obj.ip_address.get_absolute_url())
             return obj.ip_address.get_absolute_url()
 
         # If all else fails, return home. Ideally this should never happen.

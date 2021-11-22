@@ -30,6 +30,8 @@ class IPFamilyFilter(SimpleListFilter):
 
     def queryset(self, request: HttpRequest, queryset: QuerySet):
         if self.value() == 'ipv4':
+            logger(queryset.filter(prefix__family=4))
+            
             return queryset.filter(prefix__family=4)
         if self.value() == 'ipv6':
             return queryset.filter(prefix__family=6)

@@ -123,6 +123,8 @@ class ReverseZoneAdmin(admin.ModelAdmin):
             counter = 0
 
             logger.error(zone.prefix)
+            logger.error(ReverseZone)
+            
             # Find all more-specific zones
             more_specifics = ReverseZone.objects.filter(prefix__net_contained=zone.prefix)
             #more_specifics = Zone.objects.filter(name__endswith=zone.name).exclude(pk=zone.pk)

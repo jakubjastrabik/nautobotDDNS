@@ -128,6 +128,7 @@ class ReverseZoneAdmin(admin.ModelAdmin):
             # more_specifics = ReverseZone.objects.filter(prefix__net_contained=zone.prefix).exclude(pk=zone.pk)
             #more_specifics = Zone.objects.filter(name__endswith=zone.name).exclude(pk=zone.pk)
             
+            logger.error(IPAddress.objects.filter(ip_address=zone.prefix))
 
             # Find all IPAddress objects in this zone but not in the more-specifics
             ip_addresses = IPAddress.objects.filter(address__net_contained_or_equal=zone.prefix)

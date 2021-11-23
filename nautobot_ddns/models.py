@@ -178,7 +178,7 @@ class ReverseZoneQuerySet(models.QuerySet):
 
 
 class ReverseZone(models.Model):
-    prefix = VarbinaryIPField(
+    prefix = models.CharField(
         verbose_name=_('prefix'),
         unique=True,
     )

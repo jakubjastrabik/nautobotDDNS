@@ -5,7 +5,7 @@ from django.contrib.admin.filters import SimpleListFilter
 from django.contrib.admin.options import ModelAdmin
 from django.db.models import QuerySet
 from django.db.models.query_utils import Q
-from django.http.request import HttpRequest
+from django.http.request import HttpRequest, host_validation_re
 from django.utils.translation import gettext_lazy as _
 
 from nautobot.ipam.models import IPAddress
@@ -128,7 +128,7 @@ class ReverseZoneAdmin(admin.ModelAdmin):
             # more_specifics = ReverseZone.objects.filter(prefix__net_contained=zone.prefix).exclude(pk=zone.pk)
             #more_specifics = Zone.objects.filter(name__endswith=zone.name).exclude(pk=zone.pk)
             
-            logger.error(IPAddress.objects.filter(ip_address=zone.prefix))
+            logger.error(IPAddress.objects.filter(host_validation_re=zone.prefix))
 
             # Find all IPAddress objects in this zone but not in the more-specifics
             ip_addresses = IPAddress.objects.filter(address__net_contained_or_equal=zone.prefix)

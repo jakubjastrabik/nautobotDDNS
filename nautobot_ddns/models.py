@@ -180,6 +180,7 @@ class ReverseZoneQuerySet(models.QuerySet):
 class ReverseZone(models.Model):
     prefix = models.CharField(
         verbose_name=_('prefix'),
+        max_length=255,
         unique=True,
     )
     name = models.CharField(

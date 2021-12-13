@@ -179,67 +179,12 @@ class ReverseZoneQuerySet(models.QuerySet):
         zones.sort(key=lambda zone: zone.prefix.prefixlen)
         return zones[-1]
 
-class TestIPFiled(models.Model):
-    address = models.CharField(
-        verbose_name=_('IP address'),
-        max_length=255,
-        blank=True,
-    )
-    name = models.CharField(
-        verbose_name=_('Name'),
-        max_length=255,
-        blank=True,
-    )
-    class Meta:
-        ordering = ('address', 'name')
-
-    def __str__(self):
-        return f'for {self.address}'
-
-    def record_name(self, address: ip.IPAddress):
-        record_name = self.name
-        if IPNetwork(self.prefix).version == 4:
-            for pos, octet in enumerate(address.words):
-                if (pos + 1) * 8 <= self.prefix.prefixlen:
-                    continue
-
-                record_name = f'{octet}.{record_name}'
-        else:
-            nibbles = f'{address.value:032x}'
-            for pos, nibble in enumerate(nibbles):
-                if (pos + 1) * 4 <= self.prefix.prefixlen:
-                    continue
-
-                record_name = f'{nibble}.{record_name}'
-
-        logger.fatal(record_name)
-        
-        return record_name
-
-    logger.fatal(record_name)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class ReverseZone(models.Model):
-    prefix = VarbinaryIPField(
+    prefix = models.CharField(
+        # TODO - Must be Unique
         verbose_name=_('prefix'),
-        unique=True,
+        max_length=255,
+        blank=True,
     )
     name = models.CharField(
         verbose_name=_('reverse zone name'),
@@ -259,15 +204,19 @@ class ReverseZone(models.Model):
     objects = ReverseZoneQuerySet.as_manager()
 
     class Meta:
-        ordering = ('prefix',)
+        ordering = ('prefix','name')
         verbose_name = _('reverse zone')
         verbose_name_plural = _('reverse zones')
 
     def __str__(self):
+        logger.fatal("log.prefix", self.prefix)
+
         return f'for {self.prefix}'
 
     def record_name(self, address: ip.IPAddress):
         record_name = self.name
+        logger.fatal("log.name", self.name)
+        
         if IPNetwork(self.prefix).version == 4:
             for pos, octet in enumerate(address.words):
                 if (pos + 1) * 8 <= self.prefix.prefixlen:

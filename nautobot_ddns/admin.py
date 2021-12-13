@@ -12,7 +12,7 @@ from nautobot.ipam.models import IPAddress
 from nautobot.core.admin import admin_site
 from nautobot_ddns.models import DNSStatus, ExtraDNSName
 from .background_tasks import dns_create
-from .models import ReverseZone, Server, Zone, TestIPFiled
+from .models import ReverseZone, Server, Zone
 from .utils import normalize_fqdn
 
 logger = logging.getLogger('nautobot_ddns')
@@ -50,10 +50,6 @@ class ServerAdmin(admin.ModelAdmin):
         ZoneInlineAdmin,
         ReverseZoneInlineAdmin,
     ]
-
-@admin.register(TestIPFiled, site=admin_site)
-class IPTest(admin.ModelAdmin):
-    list_display = ('name', 'address')
 
 @admin.register(Zone, site=admin_site)
 class ZoneAdmin(admin.ModelAdmin):

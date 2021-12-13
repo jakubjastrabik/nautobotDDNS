@@ -178,14 +178,13 @@ class ReverseZoneQuerySet(models.QuerySet):
         return zones[-1]
 
 class TestIPFiled(models.Model):
-    ipTest = VarbinaryIPField (
+    ip = models.CharField(
+        verbose_name=_('IP address'),
+        max_length=255,
         null=False,
-        db_index=True,
-        help_text="IPv4 or IPv6 network address",
-        verbose_name=_('prefix'),
     )
     name = models.CharField(
-        verbose_name=_('ip address name'),
+        verbose_name=_('Name'),
         max_length=255,
         blank=True,
     )

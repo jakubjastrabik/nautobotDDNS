@@ -53,7 +53,7 @@ class ServerAdmin(admin.ModelAdmin):
 
 @admin.register(TestIPFiled, site=admin_site)
 class IPTest(admin.ModelAdmin):
-    list_display = ('name', 'ipTest')
+    list_display = ('name', 'ip')
 
 @admin.register(Zone, site=admin_site)
 class ZoneAdmin(admin.ModelAdmin):

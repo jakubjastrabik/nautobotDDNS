@@ -118,8 +118,8 @@ class ReverseZoneAdmin(admin.ModelAdmin):
     ]
 
     def update_all_records(self, request: HttpRequest, queryset: QuerySet):
-        logger.fatal(self)
-        # for zone in queryset:
+        for zone in queryset:
+            logger.fatal(zone)
         #     counter = 0
 
         #     logger.error(zone.prefix.objects.all())

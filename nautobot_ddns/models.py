@@ -212,8 +212,6 @@ class ReverseZone(models.Model):
 
     def record_name(self, address: ip.IPAddress):
         record_name = self.name
-        logger.fatal("log.name")
-        logger.fatal(record_name)
 
         if IPNetwork(self.prefix).version == 4:
             for pos, octet in enumerate(address.words):

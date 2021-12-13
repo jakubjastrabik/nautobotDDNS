@@ -181,7 +181,6 @@ class TestIPFiled(models.Model):
     ip = models.CharField(
         verbose_name=_('IP address'),
         max_length=255,
-        null=False,
     )
     name = models.CharField(
         verbose_name=_('Name'),

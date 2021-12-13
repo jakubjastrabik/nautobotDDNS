@@ -209,27 +209,26 @@ class ReverseZone(models.Model):
         verbose_name_plural = _('reverse zones')
 
     def __str__(self):
-        logger.fatal("log.prefix", self.prefix)
-
         return f'for {self.prefix}'
 
     def record_name(self, address: ip.IPAddress):
         record_name = self.name
-        logger.fatal("log.name", self.name)
+        logger.fatal("log.name")
+        logger.fatal(record_name)
         
-        if IPNetwork(self.prefix).version == 4:
-            for pos, octet in enumerate(address.words):
-                if (pos + 1) * 8 <= self.prefix.prefixlen:
-                    continue
+        # if IPNetwork(self.prefix).version == 4:
+        #     for pos, octet in enumerate(address.words):
+        #         if (pos + 1) * 8 <= self.prefix.prefixlen:
+        #             continue
 
-                record_name = f'{octet}.{record_name}'
-        else:
-            nibbles = f'{address.value:032x}'
-            for pos, nibble in enumerate(nibbles):
-                if (pos + 1) * 4 <= self.prefix.prefixlen:
-                    continue
+        #         record_name = f'{octet}.{record_name}'
+        # else:
+        #     nibbles = f'{address.value:032x}'
+        #     for pos, nibble in enumerate(nibbles):
+        #         if (pos + 1) * 4 <= self.prefix.prefixlen:
+        #             continue
 
-                record_name = f'{nibble}.{record_name}'
+        #         record_name = f'{nibble}.{record_name}'
 
         return record_name
 

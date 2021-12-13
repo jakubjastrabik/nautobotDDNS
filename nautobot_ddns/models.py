@@ -15,7 +15,6 @@ from dns.tsig import HMAC_MD5, HMAC_SHA1, HMAC_SHA224, HMAC_SHA256, HMAC_SHA384,
 from netaddr import IPNetwork, ip
 from typing import Optional
 
-from nautobot.ipam.fields import VarbinaryIPField
 from nautobot.ipam.models import IPAddress
 from .utils import normalize_fqdn
 from .validators import HostnameAddressValidator, HostnameValidator, validate_base64
@@ -177,6 +176,7 @@ class ReverseZoneQuerySet(models.QuerySet):
             return None
 
         zones.sort(key=lambda zone: zone.prefix.prefixlen)
+        logger.fatal(zones)
         return zones[-1]
 
 class ReverseZone(models.Model):
@@ -202,7 +202,6 @@ class ReverseZone(models.Model):
     )
 
     objects = ReverseZoneQuerySet.as_manager()
-    logger.fatal(objects)
     class Meta:
         ordering = ('prefix','name')
         verbose_name = _('reverse zone')

@@ -59,84 +59,18 @@ class ZoneAdmin(admin.ModelAdmin):
     ]
 
     def update_all_records(self, request: HttpRequest, queryset: QuerySet):
-        logger.fatal(self)
-        
-        # for zone in queryset:
-        #     counter = 0
-
-        #     # Find all more-specific zones
-        #     more_specifics = Zone.objects.filter(name__endswith=zone.name).exclude(pk=zone.pk)
-
-        #     # Find all IPAddress objects in this zone but not in the more-specifics
-        #     ip_addresses = IPAddress.objects.filter(Q(dns_name__endswith=zone.name) |
-        #                                             Q(dns_name__endswith=zone.name.rstrip('.')))
-        #     for more_specific in more_specifics:
-        #         ip_addresses = ip_addresses.exclude(Q(dns_name__endswith=more_specific.name) |
-        #                                             Q(dns_name__endswith=more_specific.name.rstrip('.')))
-
-        #     for ip_address in ip_addresses:
-        #         new_address = ip_address.address.ip
-        #         new_dns_name = normalize_fqdn(ip_address.dns_name)
-
-        #         if new_dns_name:
-        #             status, created = DNSStatus.objects.get_or_create(ip_address=ip_address)
-
-        #             dns_create.delay(
-        #                 dns_name=new_dns_name,
-        #                 address=new_address,
-        #                 status=status,
-        #                 reverse=False,
-        #             )
-
-        #             counter += 1
-
-        #     # Find all ExtraDNSName objects in this zone but not in the more-specifics
-        #     extra_names = ExtraDNSName.objects.filter(name__endswith=zone.name)
-        #     for more_specific in more_specifics:
-        #         extra_names = extra_names.exclude(name__endswith=more_specific.name)
-
-        #     for extra in extra_names:
-        #         new_address = extra.ip_address.address.ip
-        #         new_dns_name = extra.name
-
-        #         dns_create.delay(
-        #             dns_name=new_dns_name,
-        #             address=new_address,
-        #             status=extra,
-        #             reverse=False,
-        #         )
-
-        #         counter += 1
-
-        #     messages.info(request, _("Updating {count} forward records in {name}").format(count=counter, name=zone.name))
-
-
-@admin.register(ReverseZone, site=admin_site)
-class ReverseZoneAdmin(admin.ModelAdmin):
-    list_display = ('prefix', 'name', 'ttl', 'server')
-    list_filter = [IPFamilyFilter]
-    actions = [
-        'update_all_records'
-    ]
-
-    def update_all_records(self, request: HttpRequest, queryset: QuerySet):
         for zone in queryset:
             counter = 0
 
-            logger.error(zone.prefix.objects.all())
-
             # Find all more-specific zones
-            more_specifics = ReverseZone.objects.filter(prefix=zone.prefix).exclude(pk=zone.pk)
-            
-            logger.error(more_specifics)   
+            more_specifics = Zone.objects.filter(name__endswith=zone.name).exclude(pk=zone.pk)
 
             # Find all IPAddress objects in this zone but not in the more-specifics
-            ip_addresses = IPAddress.objects.filter(address="172.16.5.99/24")
-            logger.error(ip_addresses)  
+            ip_addresses = IPAddress.objects.filter(Q(dns_name__endswith=zone.name) |
+                                                    Q(dns_name__endswith=zone.name.rstrip('.')))
             for more_specific in more_specifics:
-                ip_addresses = ip_addresses.exclude(address__net_contained_or_equal=more_specific.prefix)
-            
-            logger.error(ip_address)
+                ip_addresses = ip_addresses.exclude(Q(dns_name__endswith=more_specific.name) |
+                                                    Q(dns_name__endswith=more_specific.name.rstrip('.')))
 
             for ip_address in ip_addresses:
                 new_address = ip_address.address.ip
@@ -149,12 +83,77 @@ class ReverseZoneAdmin(admin.ModelAdmin):
                         dns_name=new_dns_name,
                         address=new_address,
                         status=status,
-                        forward=False,
+                        reverse=False,
                     )
 
                     counter += 1
 
-            messages.info(request, _("Updating {count} reverse records in {name}").format(count=counter, name=zone.name))
+            # Find all ExtraDNSName objects in this zone but not in the more-specifics
+            extra_names = ExtraDNSName.objects.filter(name__endswith=zone.name)
+            for more_specific in more_specifics:
+                extra_names = extra_names.exclude(name__endswith=more_specific.name)
+
+            for extra in extra_names:
+                new_address = extra.ip_address.address.ip
+                new_dns_name = extra.name
+
+                dns_create.delay(
+                    dns_name=new_dns_name,
+                    address=new_address,
+                    status=extra,
+                    reverse=False,
+                )
+
+                counter += 1
+
+            messages.info(request, _("Updating {count} forward records in {name}").format(count=counter, name=zone.name))
+
+
+@admin.register(ReverseZone, site=admin_site)
+class ReverseZoneAdmin(admin.ModelAdmin):
+    list_display = ('prefix', 'name', 'ttl', 'server')
+    list_filter = [IPFamilyFilter]
+    actions = [
+        'update_all_records'
+    ]
+
+    def update_all_records(self, request: HttpRequest, queryset: QuerySet):
+        logger.fatal(self)
+        # for zone in queryset:
+        #     counter = 0
+
+        #     logger.error(zone.prefix.objects.all())
+
+        #     # Find all more-specific zones
+        #     more_specifics = ReverseZone.objects.filter(prefix=zone.prefix).exclude(pk=zone.pk)
+            
+        #     logger.error(more_specifics)   
+
+        #     # Find all IPAddress objects in this zone but not in the more-specifics
+        #     ip_addresses = IPAddress.objects.filter(address="172.16.5.99/24")
+        #     logger.error(ip_addresses)  
+        #     for more_specific in more_specifics:
+        #         ip_addresses = ip_addresses.exclude(address__net_contained_or_equal=more_specific.prefix)
+            
+        #     logger.error(ip_address)
+
+        #     for ip_address in ip_addresses:
+        #         new_address = ip_address.address.ip
+        #         new_dns_name = normalize_fqdn(ip_address.dns_name)
+
+        #         if new_dns_name:
+        #             status, created = DNSStatus.objects.get_or_create(ip_address=ip_address)
+
+        #             dns_create.delay(
+        #                 dns_name=new_dns_name,
+        #                 address=new_address,
+        #                 status=status,
+        #                 forward=False,
+        #             )
+
+        #             counter += 1
+
+        #     messages.info(request, _("Updating {count} reverse records in {name}").format(count=counter, name=zone.name))
 
 
 @admin.register(ExtraDNSName, site=admin_site)

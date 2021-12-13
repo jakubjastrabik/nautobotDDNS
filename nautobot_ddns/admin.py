@@ -121,16 +121,12 @@ class ReverseZoneAdmin(admin.ModelAdmin):
         for zone in queryset:
             counter = 0
 
+
             # Find all more-specific zones
             more_specifics = ReverseZone.objects.filter(prefix=zone.prefix).exclude(pk=zone.pk)
-   
-            
 
             # # Find all IPAddress objects in this zone but not in the more-specifics
-            ip_addresses = IPAddress.objects.filter(address__net_contained=zone.prefix)
-            
-            logger.fatal(ip_addresses)
-
+            ip_addresses = IPAddress.objects.filter(address__net_contained_or_equal="172.16.5.99/24")
             # logger.error(ip_addresses)  
             # for more_specific in more_specifics:
             #     ip_addresses = ip_addresses.exclude(address__net_contained_or_equal=more_specific.prefix)

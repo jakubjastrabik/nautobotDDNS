@@ -182,6 +182,11 @@ class TestIPFiled(models.Model):
         verbose_name=_('ipAddress'),
         unique=True,
     )
+    name = models.CharField(
+        verbose_name=_('ip address name'),
+        max_length=255,
+        blank=True,
+    )
 
 class ReverseZone(models.Model):
     prefix = VarbinaryIPField(

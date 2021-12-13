@@ -54,7 +54,7 @@ class ServerAdmin(admin.ModelAdmin):
 
 @admin.register(TestIPFiled, site=admin_site)
 class IPTest(admin.ModelAdmin):
-    display = ('TestIP')
+    list_display = ('name', 'ipTest')
 
 @admin.register(Zone, site=admin_site)
 class ZoneAdmin(admin.ModelAdmin):

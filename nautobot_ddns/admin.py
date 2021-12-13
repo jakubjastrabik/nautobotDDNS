@@ -121,10 +121,11 @@ class ReverseZoneAdmin(admin.ModelAdmin):
         for zone in queryset:
             counter = 0
 
-            logger.error(zone.prefix.objects.all())
+            logger.fatal(zone.prefix.objects.all())
 
             # Find all more-specific zones
             # more_specifics = ReverseZone.objects.filter(prefix=zone.prefix).exclude(pk=zone.pk)
+            logging.fatal(ReverseZone.objects)
             
             # logger.error(more_specifics)   
 

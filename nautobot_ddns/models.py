@@ -211,11 +211,12 @@ class ReverseZone(models.Model):
     def __str__(self):
         return f'for {self.prefix}'
 
-    def record_name(self, address: ip.IPAddress):
+    # def record_name(self, address: ip.IPAddress):
+    def record_name(self):
         record_name = self.name
         logger.fatal("log.name")
         logger.fatal(record_name)
-        
+
         # if IPNetwork(self.prefix).version == 4:
         #     for pos, octet in enumerate(address.words):
         #         if (pos + 1) * 8 <= self.prefix.prefixlen:

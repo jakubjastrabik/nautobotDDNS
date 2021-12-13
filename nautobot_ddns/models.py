@@ -211,11 +211,12 @@ class TestIPFiled(models.Model):
                     continue
 
                 record_name = f'{nibble}.{record_name}'
-        logger.fatal("Logging")
+
         logger.fatal(record_name)
         
         return record_name
 
+    logger.fatal(record_name)
 
 
 

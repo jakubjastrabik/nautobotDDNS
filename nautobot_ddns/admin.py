@@ -124,7 +124,8 @@ class ReverseZoneAdmin(admin.ModelAdmin):
             # logger.fatal(zone.prefix.objects.all())
 
             # Find all more-specific zones
-            more_specifics = ReverseZone.objects.filter(prefix=zone.prefix).exclude(pk=zone.pk)
+            more_specifics = ReverseZone.objects.filter(prefix=zone.prefix)
+            # .exclude(pk=zone.pk)
             
             logger.fatal(more_specifics)
 

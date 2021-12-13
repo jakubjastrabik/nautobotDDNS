@@ -1,3 +1,4 @@
+from enum import unique
 import dns.tsigkeyring
 import dns.update
 import logging
@@ -176,11 +177,15 @@ class ReverseZoneQuerySet(models.QuerySet):
         zones.sort(key=lambda zone: zone.prefix.prefixlen)
         return zones[-1]
 
+class TestIPFiled(models.Model):
+    ipTest = VarbinaryIPField (
+        name=_('ipAddress'),
+        unique=True,
+    )
 
 class ReverseZone(models.Model):
     prefix = VarbinaryIPField(
         verbose_name=_('prefix'),
-        max_length=255,
         unique=True,
     )
     name = models.CharField(

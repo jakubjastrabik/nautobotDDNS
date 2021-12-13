@@ -18,8 +18,6 @@ from nautobot.ipam.models import IPAddress
 from .utils import normalize_fqdn
 from .validators import HostnameAddressValidator, HostnameValidator, validate_base64
 
-from nautobot.core.models.generics import PrimaryModel
-
 logger = logging.getLogger('nautobot_ddns')
 
 TSIG_ALGORITHM_CHOICES = (
@@ -179,10 +177,12 @@ class ReverseZoneQuerySet(models.QuerySet):
         zones.sort(key=lambda zone: zone.prefix.prefixlen)
         return zones[-1]
 
-class TestIPFiled(PrimaryModel):
+class TestIPFiled(models.Model):
     ipTest = VarbinaryIPField (
-        verbose_name=_('ipAddress'),
-        unique=True,
+        null=False,
+        db_index=True,
+        help_text="IPv4 or IPv6 network address",
+        verbose_name=_('prefix'),
     )
     name = models.CharField(
         verbose_name=_('ip address name'),
@@ -192,10 +192,8 @@ class TestIPFiled(PrimaryModel):
 
 class ReverseZone(models.Model):
     prefix = VarbinaryIPField(
-        null=False,
-        db_index=True,
-        help_text="IPv4 or IPv6 network address",
         verbose_name=_('prefix'),
+        unique=True,
     )
     name = models.CharField(
         verbose_name=_('reverse zone name'),

@@ -1,6 +1,7 @@
 import logging
 
 from django.contrib import admin, messages
+from django.contrib.admin.decorators import display
 from django.contrib.admin.filters import SimpleListFilter
 from django.contrib.admin.options import ModelAdmin
 from django.db.models import QuerySet
@@ -53,7 +54,7 @@ class ServerAdmin(admin.ModelAdmin):
 
 @admin.register(TestIPFiled, site=admin_site)
 class IPTest(admin.ModelAdmin):
-    list_display = ('TestIP')
+    display = ('TestIP')
 
 @admin.register(Zone, site=admin_site)
 class ZoneAdmin(admin.ModelAdmin):

@@ -194,8 +194,46 @@ class TestIPFiled(models.Model):
         ordering = ('address', 'name')
 
     def __str__(self):
-        logger.fatal(self.address)
         return f'for {self.address}'
+
+    def record_name(self, address: ip.IPAddress):
+        record_name = self.name
+        if IPNetwork(self.prefix).version == 4:
+            for pos, octet in enumerate(address.words):
+                if (pos + 1) * 8 <= self.prefix.prefixlen:
+                    continue
+
+                record_name = f'{octet}.{record_name}'
+        else:
+            nibbles = f'{address.value:032x}'
+            for pos, nibble in enumerate(nibbles):
+                if (pos + 1) * 4 <= self.prefix.prefixlen:
+                    continue
+
+                record_name = f'{nibble}.{record_name}'
+        
+        logger.fatal(record_name)
+        
+        return record_name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class ReverseZone(models.Model):
     prefix = VarbinaryIPField(

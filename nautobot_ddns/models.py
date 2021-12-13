@@ -178,7 +178,7 @@ class ReverseZoneQuerySet(models.QuerySet):
         return zones[-1]
 
 class TestIPFiled(models.Model):
-    ip = models.CharField(
+    address = models.CharField(
         verbose_name=_('IP address'),
         max_length=255,
     )

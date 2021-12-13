@@ -169,9 +169,9 @@ class Zone(models.Model):
 
 
 class ReverseZoneQuerySet(models.QuerySet):
+    logger.fatal("Fuck Off !")
     def find_for_address(self, address: ip.IPAddress) -> Optional['ReverseZone']:
         # Find the zone, if any
-        logger.fatal("Fuck Off !")
         zones = list(ReverseZone.objects.filter(prefix__net_contains=address))
         if not zones:
             return None

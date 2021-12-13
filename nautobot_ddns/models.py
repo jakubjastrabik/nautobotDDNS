@@ -179,7 +179,7 @@ class ReverseZoneQuerySet(models.QuerySet):
 
 class TestIPFiled(models.Model):
     ipTest = VarbinaryIPField (
-        name=_('ipAddress'),
+        verbose_name=_('ipAddress'),
         unique=True,
     )
 

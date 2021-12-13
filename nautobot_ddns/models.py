@@ -192,11 +192,10 @@ class TestIPFiled(models.Model):
     )
     class Meta:
         ordering = ('address', 'name')
-    
-    def __str__(self):
-        return f'for {self.address}'
 
-    logger.fatal(__str__)
+    def __str__(self):
+        logger.fatal(self.address)
+        return f'for {self.address}'
 
 class ReverseZone(models.Model):
     prefix = VarbinaryIPField(

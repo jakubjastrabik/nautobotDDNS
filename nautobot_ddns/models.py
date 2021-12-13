@@ -1,4 +1,6 @@
 from enum import unique
+
+from django.db.models.expressions import OrderBy
 import dns.tsigkeyring
 import dns.update
 import logging
@@ -188,6 +190,13 @@ class TestIPFiled(models.Model):
         max_length=255,
         blank=True,
     )
+    class Meta:
+        ordering = ('address', 'name')
+    
+    def __str__(self):
+        return f'for {self.address}'
+
+    logger.fatal(__str__)
 
 class ReverseZone(models.Model):
     prefix = VarbinaryIPField(

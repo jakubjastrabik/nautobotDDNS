@@ -200,7 +200,7 @@ class ReverseZone(models.Model):
         verbose_name=_('DDNS Server'),
         on_delete=models.PROTECT,
     )
-    logger.fatal("HMM")   
+
     objects = ReverseZoneQuerySet.as_manager()
     logger.fatal(objects)
     class Meta:
